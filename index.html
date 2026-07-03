@@ -20,7 +20,20 @@
 
 </head>
 <body>
-    
+  <!-- ВИДЕО-ЗАСТАВКА -->
+<div id="video-overlay">
+    <video id="intro-video" muted playsinline preload="auto" autoplay>
+        <source src="Приглашение_files/intro.mp4" type="video/mp4">
+        <source src="Приглашение_files/intro.webm" type="video/webm">
+        Ваш браузер не поддерживает видео.
+    </video>
+    <button id="skip-video">Пропустить</button>
+</div>
+
+<!-- ПРЕЛОАДЕР (ваш существующий, изначально скрыт) -->
+<div id="preloader" style="display:none;">
+    <!-- ... ваш код прелоадера ... -->
+</div>  
     <div class="desktop-message">
     <h2>Пожалуйста, откройте приглашение на телефоне 📱</h2>
     <!--   -->
