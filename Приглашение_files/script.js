@@ -1,3 +1,10 @@
+// ===== ВИДЕО-ЗАСТАВКА =====
+const videoOverlay = document.getElementById('video-overlay');
+const introVideo = document.getElementById('intro-video');
+const preloader = document.getElementById('preloader');
+
+
+
 //тут вроде добавил константы для работы музона//
     const musicToggle = document.getElementById("music-toggle");
     const audio = document.getElementById("bgMusic");
@@ -54,6 +61,40 @@ function loadMusic() {
 
 const video = document.getElementById("bg-video");
 //тут конец музыки//
+function showPreloader() {
+    videoOverlay.style.transition = 'opacity 1s ease';
+    videoOverlay.style.opacity = '0';
+    setTimeout(() => {
+        videoOverlay.style.display = 'none';
+        preloader.style.display = 'flex';   // показываем прелоадер
+    }, 1000);
+}
+
+// Когда видео закончилось – показываем прелоадер
+introVideo.addEventListener('ended', showPreloader);
+
+// Кнопка "Пропустить" – открывает прелоадер
+document.getElementById('skip-video').addEventListener('click', showPreloader);
+
+// Если видео не запустилось автоматически – показываем подсказку
+introVideo.play().catch(() => {
+    const hint = document.createElement('div');
+    hint.style.cssText = `
+        position: absolute; bottom: 50%; left: 50%; transform: translate(-50%, 50%);
+        color: white; font-size: 24px; text-align: center;
+        background: rgba(0,0,0,0.6); padding: 20px 40px; border-radius: 12px;
+    `;
+    hint.textContent = 'Нажмите, чтобы начать';
+    videoOverlay.appendChild(hint);
+    videoOverlay.addEventListener('click', function start() {
+        introVideo.play();
+        hint.remove();
+        videoOverlay.removeEventListener('click', start);
+    });
+});
+
+// На случай, если видео слишком длинное – автоматический переход через 30 секунд
+setTimeout(showPreloader, 30000);
 
 // Конфетти — временно заглушка
 function startConfetti() {
