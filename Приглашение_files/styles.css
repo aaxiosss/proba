@@ -13,26 +13,23 @@
 }
 
 #video-overlay {
-    position: absolute;
-    top: 50%;
-    left: 50%;
-    width: 100%;
-    height: 41%;
-    object-fit: cover;
-    transform: translate(-50%, -50%);
-    background: black;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100vw;
+    height: 100vh;
+    background: black;          /* <-- главное: чёрный фон */
     z-index: 9999;
-    display: flex
-;
+    display: flex;
     align-items: center;
     justify-content: center;
-    flex-direction: column;
 }
 
 #intro-video {
     width: 100%;
     height: 100%;
-    object-fit: cover;       /* видео заполняет экран, сохраняя пропорции */
+    object-fit: contain;        /* <-- видео вписывается, поля чёрные */
+    background: black;          /* на случай, если видео не загрузится */
 }
 
 #skip-video {
