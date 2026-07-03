@@ -1,0 +1,1084 @@
+@font-face {
+    font-family: "Felidae";
+    src: url("../fonts/Felidae.ttf") format("truetype");
+}
+@font-face {
+    font-family: "Caviar Dreams";
+    src: url("../fonts/CaviarDreams.ttf") format("truetype");
+    /* если у вас есть другие начертания (жирное, курсив), добавьте отдельные блоки */
+}
+* {
+    margin: 0;
+    padding: 0;
+}
+
+.desktop-message {
+    display: none;
+    text-align: center;
+    margin-top: 150px;
+}
+
+
+/*тут добавил че-то странное*/
+overflow-x: hidden;
+    width: 100%;
+/*тут конец странностям*/
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    color: #002D39;
+    font-family: "Poiret One", sans-serif;
+
+}
+
+.hidden {
+    opacity: 0;
+    transform: translateY(50px);
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+.hidden-center {
+    opacity: 0;
+    transform: scale(0); /* уменьшаем до центра */
+    transition: opacity 0.8s ease-out, transform 0.8s ease-out;
+}
+
+.show-center {
+    opacity: 1;
+    transform: scale(1); /* нормальный размер */
+}
+.show {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.fonts {
+    font-family: "Great Vibes", sans-serif;
+}
+/*для тацминга*/
+.hidden-right {
+    opacity: 0;
+    transform: translateX(50px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+.hidden-right.show {
+    opacity: 1;
+    transform: translateX(0);
+}
+/*для тайминга*/
+
+#preloader {
+    touch-action: pan-y;
+    background-color: #E2A0A2;          /* запасной фон */
+    background-image: url('fon.png');
+    background-size: cover;
+    background-position: center;
+    background-repeat: no-repeat;
+    position: fixed;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+
+top: 0;
+left: 0;
+padding: 0;
+margin: 0;  
+box-sizing: border-box;
+    
+    color: white;
+    font-size: 24px;
+    font-family: Arial, sans-serif;
+    flex-direction: column;
+    opacity: 1;
+    transition: opacity 1s ease;
+    text-align: center;
+    overflow: hidden;
+}
+
+/*тут начал пихать музоннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннн*/
+#music-toggle {
+    background-color: rgba(255, 255, 255, 0.5);
+    border-radius: 50%;
+    padding: 10px 10px 12px 12px;
+    font-size: 20px;
+    cursor: pointer;
+    width: 50px;
+    height: 50px;
+    box-sizing: border-box;
+    border: 1px solid gray;
+    transition: background-color 0.3s;
+}
+#music-toggle:hover {
+    background-color: rgba(255, 255, 255, 0.5);
+}
+
+button {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    background: white;
+    width: 100%;
+    padding: 10px;
+    border: 1px solid black;
+    color: black;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 16px;
+    font-weight: bold;
+}
+button:hover {
+    background: gray;
+}
+button:focus {
+    outline: none;
+}
+.music-container {
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    margin-top: 50px;
+    gap: 30px;
+    margin-bottom: 30px;
+}
+
+.music-button {
+    position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    order: 2;
+}
+
+
+.music-btn {
+    width: 50px;
+    height: 50px;
+    background: transparent !important;
+    border: 1px solid black;
+    border-radius: 50%;
+    color: black;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 24px;
+    cursor: pointer;
+    position: relative;
+    z-index: 2;
+    order: 2;
+}
+
+
+
+.music-text {
+    font-size: 30px;
+    text-align: left;
+    color: #706556;
+    order: 1;
+}
+
+/*тут закончил пихать стили для музонаааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааааа*/
+
+
+
+.preloader-text {
+    position: relative;
+    z-index: 1;
+    /*background: rgba(0, 0, 0, 0.3); !* Затемнённый фон для текста *!*/
+    padding: 70px;
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+
+}
+
+#content {
+    background-color: #d9d9d9;
+    display: none;
+    opacity: 0;
+    transition: opacity 1s ease;
+}
+
+.open {
+    margin-top: 0px;
+}
+
+.preloader-wed-day, .preloader-name, .razblock {
+    opacity: 0;
+    transform: scale(0.8);
+    filter: blur(10px);
+    animation: fadeInScale 1s ease-out forwards;
+}
+.najimai {
+    position: fixed;
+    bottom: 25px;          /* отступ от нижнего края – регулируйте */
+    left: 0;
+    right: 0;
+    margin: 0 auto;
+    width: fit-content;    /* ширина по содержимому, чтобы центрировалось */
+    z-index: 1;            /* повыше, чтобы не перекрывался другими элементами */
+    /* все остальные свойства оставляем без изменений */
+    
+    border-radius: 10px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+white-space: nowrap;        /* запрещает перенос по словам */
+    text-align: center;          /* выравнивание текста по центру внутри блока */
+    font-size: 28px;
+    font-family: "Felidae", sans-serif;
+    color: #002D39;
+    font-weight: 500;
+   
+    
+    opacity: 0;
+    transform: scale(0.8);
+    filter: blur(10px);
+    animation: fadeInScale 1s ease-out forwards;
+}
+.open-btn {
+    position: relative;
+    width: 105px; /* Задайте нужный размер */
+    height: 105px;
+    margin-left: -55px;   /* сдвиг влево (положительное значение — вправо, отрицательное — влево) */
+    margin-top: -35px;    /* сдвиг вниз */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.pulse-heart {
+    width: 63px; /* Размер сердечка */
+    height: 63px;
+    animation: heartPulse 1s infinite;
+    z-index: 2;
+}
+
+.pulse-circle {
+    position: absolute;
+    width: 45px;
+    height: 45px;
+    border-radius: 50%;
+    background-color: rgba(255, 253, 253, 0.3);
+    animation: circlePulse 1s infinite;
+    z-index: 1;
+}
+
+@keyframes heartPulse {
+    0%, 100% {
+        transform: scale(1);
+    }
+    50% {
+        transform: scale(1.5);
+    }
+}
+
+@keyframes circlePulse {
+    0% {
+        transform: scale(1);
+        opacity: 0.6;
+    }
+    70% {
+        transform: scale(2);
+        opacity: 0;
+    }
+    100% {
+        transform: scale(1);
+        opacity: 0;
+    }
+}
+
+
+.razblock {
+    font-family: "Felidae", sans-serif;
+}
+.preloader-name.fraza {
+    font-size: 30px;
+    margin-bottom: 30px;
+    font-family: "Felidae", sans-serif;
+    animation-delay: 0.6s;
+}
+
+.razblock {
+    animation-delay: 0.9s;
+}
+
+.open-btn img {
+    width: 37px;
+}
+
+@keyframes fadeInScale {
+    from {
+        opacity: 0;
+        transform: scale(0.8);
+        filter: blur(10px);
+    }
+    to {
+        opacity: 1;
+        transform: scale(1);
+        filter: blur(0);
+    }
+}
+
+.background-wrapper {
+
+    background-color: pink;          /* запасной фон */
+    background-image: url("2fon.png"); /* путь к вашей картинке */
+    background-size: cover;          /* картинка покрывает всю область, сохраняя пропорции */
+    background-position: center;
+    background-repeat: no-repeat;    /* не повторяет */
+    width: 100%;              /* ширина 100% */
+    height: 100vh;            /* высота на весь экран */   
+    display: flex;
+    align-items: center;      /* выравнивание по вертикали */
+    justify-content: center;  /* выравнивание по горизонтали */
+    
+    font-family: "Poiret One", sans-serif; /*шрифт*/
+    color: #002D39; /*цвет*/
+   
+    min-height: 100vh;        /* гарантия для мобильных браузеров */
+    box-sizing: border-box
+     
+}
+
+/*.invite {
+    background-image: url("images/background.jpeg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 200px 0 150px 0;
+    position: relative;
+}
+.invite img {
+    position: absolute;
+    top: -201px;
+    left: -159px;
+    z-index: 1;
+    rotate: 183deg;
+    opacity: 0.4;
+}
+
+.invite .invite-name {
+    font-size: 16px;
+    text-align: center;
+    z-index: 2;
+    position: relative;
+}*/
+
+/*.date {
+    background-image: url("images/background.jpeg");
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    padding: 0 0 150px 0;
+}
+
+.date-image {
+    position: relative;
+    align-items: center;
+    display: flex;
+    justify-content: center;
+}
+
+.date-image img {
+    display: block;
+    max-width: 100%;
+    z-index: 55555;
+}
+
+.date-image::before {
+    content: "";
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 100%;
+    height: 100%;
+    background: url('images/background.jpeg') center/cover no-repeat;
+    opacity: 0.4;
+    z-index: 1;
+}
+
+.date-time {
+    font-size: 65px;
+    text-align: center;
+    margin-top: 20px;
+    margin-bottom: 20px;
+}
+.data-text {
+    font-size: 65px;
+    text-align: center;
+}*/
+
+.main {
+    background-color: #003d4f;
+    
+    background-image: url("3fon.png");
+    background-size: cover;          /* картинка покрывает всю область, сохраняя пропорции */
+    background-position: center;
+    background-repeat: no-repeat;    /* не повторяет */
+    width: 100%;              /* ширина 100% */
+    height: 100vh;            /* высота на весь экран */   
+    display: flex;
+    align-items: center;      /* выравнивание по вертикали */
+    justify-content: center;  /* выравнивание по горизонтали */
+    
+    font-family: "Poiret One", sans-serif; /*шрифт*/
+    color: #002D39; /*цвет*/
+   
+    min-height: 100vh;        /* гарантия для мобильных браузеров */
+    box-sizing: border-box
+
+}
+
+/*.main img {
+    right: -133px;
+    position: absolute;
+    top: -300px;
+    z-index: 1;
+    rotate: 243deg;
+    opacity: 0.4;
+}
+.main-info {
+    color: #f8efea;
+    font-size: 65px;
+}
+.main .no-fonts {
+    font-size: 48px;
+    margin: 20px 0 20px 0;
+    max-width: 650px;
+}*/
+/*.main-info-location {
+    margin-left: 30%;
+    margin-top: 20px;
+
+}
+.main-info-location p:not(.fonts) {
+    font-size: 40px;
+}
+.main-info-location a {
+    font-size: 30px;
+    text-decoration: none;
+    outline: none;
+    color: #f8efea;
+    border: 2px solid #f8efea;
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 5px;
+    display: inline-block;
+    cursor: pointer;
+    margin-top: 20px;
+}
+.main-info-location a:hover {
+    color: #003d4f;
+    background-color: #f8efea;
+    border: 2px solid #f8efea;
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 5px;
+    display: inline-block;
+    cursor: pointer;
+
+}*/
+
+.suitcase-container {
+    background-color: #003d4f;
+    
+  
+    background-size: cover;          /* картинка покрывает всю область, сохраняя пропорции */
+    background-position: center;
+    background-repeat: no-repeat;    /* не повторяет */
+    width: 100%;              /* ширина 100% */
+    height: 100vh;            /* высота на весь экран */   
+    display: flex;
+    align-items: center;      /* выравнивание по вертикали */
+    justify-content: center;  /* выравнивание по горизонтали */
+    
+    font-family: "Caviar Dreams", sans-serif;
+    color: #002D39; /*цвет*/
+   
+    min-height: 100vh;        /* гарантия для мобильных браузеров */
+    box-sizing: border-box;
+
+    overflow: hidden;         /* чтобы ничего не вылезало */
+    position: relative;       /* для позиционирования дочерних элементов, если понадобится */
+    
+}
+
+.suitcase-container img {
+    cursor: pointer;
+  
+
+    width: 100%;
+    height: 100%;
+    object-fit: cover;        /* картинка покроет весь контейнер, сохраняя пропорции */
+    
+    transition: opacity 0.3s ease;  /* плавная смена при переключении */
+    position: relative;       /* если хотите, чтобы картинка точно заполняла контейнер */
+    top: 0;
+    left: 0;
+    
+}
+
+.pulse-circle-suitcase {
+    position: absolute;
+    width: 70px;
+    height: 70px;
+    border-radius: 50%;
+    background-color: rgba(255, 253, 253, 0.3);
+    animation: circlePulse 1s infinite;
+    z-index: 1;
+    /* Расположение в нижнем левом углу */
+    bottom: 15%;
+    left: 15%;
+    /* Изначально видим (поскольку на закрытом чемодане) */
+    opacity: 1;
+    transition: opacity 0.5s ease;
+    pointer-events: none; /* чтобы круг не мешал клику по картинке */
+}
+
+/* Когда чемодан открыт – скрываем круг и отключаем анимацию */
+.suitcase-container.is-open .pulse-circle-suitcase {
+    opacity: 0;
+    animation: none; /* отключаем пульсацию, чтобы она не переопределяла opacity */
+
+}
+
+/* Текст на закрытом чемодане */
+.suitcase-text {
+    position: absolute;
+    top: 27%;          /* чуть выше? центра – регулируйте под свой макет */
+    left: 50%;
+    transform: translate(-50%, -50%);
+    width: 95%;              /* занимает 95% ширины контейнера */
+    max-width: 500px;        /* не шире 500px на больших экранах */
+    color: black;    /* или другой контрастный цвет */
+    font-family: "Poiret One", sans-serif;
+    font-size: 1.3rem; /* можно в rem, чтобы адаптировалось */
+    text-align: center;
+    white-space: nowrap; /* чтобы не переносился на две строки, если нужно */
+    
+    
+    pointer-events: none; /* чтобы клик проходил сквозь текст на картинку */
+    z-index: 2;        /* выше картинок, но ниже круга? можно выше, но круг z-index:1, зададим 2 */
+line-height: 1.4;
+/*Чтобы текст плавно появлялся после планвного появления фона*/
+ opacity: 0;
+    transition: opacity 0.8s ease 0.8s; /* задержка 0.8с = время появления контейнера */
+    /* остальные ваши стили (position, top, left, transform, font и т.д.) остаются без изменений */
+    
+}
+/* Когда контейнер полностью появился (класс .show) – текст появляется с задержкой */
+.suitcase-container.show .suitcase-text {
+    opacity: 1;
+}
+/* Когда чемодан открыт (класс .is-open) – текст исчезает мгновенно (без задержки) */
+.suitcase-container.is-open .suitcase-text {
+    opacity: 0;
+    transition-delay: 0s; /* отключаем задержку, чтобы текст сразу пропадал */
+}
+
+/* Когда чемодан закрыт (класс is-open отсутствует) – показываем текст */
+/*.suitcase-container:not(.is-open) .suitcase-text {
+    opacity: 1;
+}*/
+
+/*.suitcase-container.is-open .suitcase-text {
+    opacity: 0; 
+}*/
+
+/* Блок референсов – изначально скрыт */
+.dresscode-references {
+   
+    width: 100%;
+    position: absolute;
+    opacity: 0;
+     pointer-events: none;
+    top: 60%;               
+    left: 50%;
+    transform: translateX(-50%);
+    height: 400px;
+    max-width: 700px;
+    z-index: 3;
+    
+    transition: opacity 0.6s ease;
+   
+}
+
+.suitcase-container.is-open .dresscode-references {
+    opacity: 1;
+    pointer-events: auto;
+}
+
+.strelka-text {
+    text-align: left;
+    font-size: 18px;
+        padding: 0 0 0 2%;
+    margin-bottom: 10px;
+    color: black;
+    text-shadow: 0 1px 3px rgba(0,0,0,0.5);
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    position: relative;
+    z-index: 5; /* чтобы быть поверх картинок */
+}
+
+.strelka-text svg {
+    width: 80px;
+    height: 30px;
+    fill: black;  /* белая стрелка */
+}
+
+.strelka-images {
+    
+
+width: 100%;                   /* фиксированная ширина = 100% родителя */
+    max-width: 100%;               /* ограничение, чтобы не вылезать */
+    overflow-x: auto;              /* включает прокрутку */
+    
+    display: flex;    /* чтобы ширина была по содержимому */
+    touch-action: pan-x; /* разрешает только горизонтальную прокрутку */
+    
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    gap: 20px;
+    cursor: grab;
+    
+   
+}
+
+.strelka-images::-webkit-scrollbar {
+    display: none;
+}
+
+.strelka-images img {
+    flex-shrink: 0;
+    min-width: 200px;
+    height: 350px;           /* увеличено */
+    object-fit: cover;
+    border-radius: 12px;
+    box-shadow: 0 4px 12px rgba(0,0,0,0.4);
+    transition: transform 0.2s;
+}
+/*начал вставять локациюююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююю*/
+.location {
+    background-color: #003d4f;
+    flex-direction: column;   /* элементы выстраиваются сверху вниз */
+    background-image: url("4fon.png");
+    background-size: cover;          /* картинка покрывает всю область, сохраняя пропорции */
+    background-position: center;
+    background-repeat: no-repeat;    /* не повторяет */
+    width: 100%;              /* ширина 100% */
+    height: 100vh;            /* высота на весь экран */   
+    display: flex;
+    align-items: center;      /* выравнивание по вертикали */
+    justify-content: center;  /* выравнивание по горизонтали */
+    
+    font-family: "Caviar Dreams", sans-serif;
+    color: #002D39; /*цвет*/
+   
+    min-height: 100vh;        /* гарантия для мобильных браузеров */
+    box-sizing: border-box;
+
+    overflow: hidden;         /* чтобы ничего не вылезало */
+    position: relative;       /* для позиционирования дочерних элементов, если понадобится */
+    
+}
+
+.location .strelka-text {
+    text-align: left;          /* выравнивание по левому краю */
+    padding-left: 15%;         /* отступ от левого края – можно менять 10–15% */
+    width: 100%;               /* чтобы паддинг работал */
+    box-sizing: border-box;    /* чтобы паддинг не выходил за пределы */
+    /* остальные стили наследуются от глобального .strelka-text */
+}
+
+.location-images {
+    
+box-sizing: border-box;  /* чтобы паддинг не выходил за пределы */
+width: 100%;                   /* фиксированная ширина = 100% родителя */
+    max-width: 100%;               /* ограничение, чтобы не вылезать */
+    overflow-x: auto;              /* включает прокрутку */
+    
+    display: flex;    /* чтобы ширина была по содержимому */
+   *touch-action: pan-x; /* разрешает только горизонтальную прокрутку */
+  /*  touch-action: auto; */   /* браузер сам решает */
+    -webkit-overflow-scrolling: touch;
+    scrollbar-width: none;
+    -ms-overflow-style: none;
+    gap: 20px;
+    cursor: grab;
+    
+   
+}
+
+.location-images::-webkit-scrollbar {
+    display: none;
+}
+
+.location-images img {
+    box-sizing: border-box;  /* чтобы паддинг не выходил за пределы */
+    flex-shrink: 0;
+    min-width: 200px;
+    height: 270px;           /* увеличено */
+    object-fit: cover;
+    border-radius: 12px;
+   
+    transition: transform 0.2s;
+}
+/*закончил локациююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююююю*/
+/*Начал пилить программу дняяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяяя*/
+.program {
+    width: 100%;
+    overflow-x: hidden;
+    padding-top: 80px;
+    background-color: rgba(255, 255, 255, 0.5);
+    background-image: url("5fon.png");
+    background-size: cover;          /* картинка покрывает всю область, сохраняя пропорции */
+    /*background-position: center;*/
+    background-repeat: no-repeat;    /* не повторяет */
+}
+
+.program .container {
+    text-align: center;
+    position: relative; /* чтобы внутри можно было позиционировать абсолютно */
+}
+
+.program-title {
+    position: relative;
+    z-index: 2;
+}
+
+.time-line-svg {
+    position: relative;
+    width: 100%;
+}
+
+.time-line-svg svg {
+    width: 100%;
+    max-height: 70vh;
+    height: auto;
+    display: block;
+}
+
+.timeline {
+    position: relative;
+    width: 100%;
+    height: 100%;         /* чтобы дочерние absolute позиционировались внутри */
+}
+
+/* Общие стили для каждого события */
+.event {
+    position: absolute;
+    width: 220px;          /* ширина блока с текстом */
+}
+
+.event .time-info {
+    width: 100%;
+    text-align: left;      /* или center, как вам нравится */
+}
+
+.time-info-time {
+    font-size: 36px;
+    font-weight: bold;
+     font-family: "Caviar Dreams", sans-serif;
+}
+
+.description {
+    font-size: 18px;
+    margin-top: 10px;
+     font-family: "Caviar Dreams", sans-serif;
+    font-weight: bold;
+}
+
+.description span {
+    font-weight: bold;
+    font-size: 23px;
+     font-family: "Caviar Dreams", sans-serif;
+}
+
+.time-info a {
+    text-decoration: none;
+    color: #57524e;
+    font-weight: bold;
+}
+
+/* Позиционирование 4 событий */
+.event-one {
+    top: 10%;
+    left: 8%;
+}
+.event-two {
+    top: 35%;
+    right: 5%;
+}
+.event-three {
+    bottom: 20%;
+    left: 8%;
+}
+.event-four {
+    bottom: 5%;
+    right: 5%;
+}
+
+/*Закончил вставлять таймингггггггггггггггггггггггггггггггггггггггггггггггггггггггггггггггггггггггггггггггггггггггггггггггггг*/
+/*Начало раздела пожеланий*/
+/*.pojelania {
+    
+    width: 100%;              
+    height: 100vh;             
+    display: flex;
+    align-items: center;      
+    justify-content: center;  
+    
+   
+    color: #002D39; 
+   
+    min-height: 100vh;        
+    box-sizing: border-box
+
+}*/
+
+.wishes {
+    padding: 100px 0 100px 0;
+    background-color: pink;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("6fon.png");
+    background-size: cover;          /* картинка покрывает всю область, сохраняя пропорции */
+    background-position: center;
+    background-repeat: no-repeat;    /* не повторяет */
+    font-family: "Poiret One", sans-serif; /*шрифт*/
+}
+
+.wishes .container {
+    color: #003d4f;
+}
+.wishes-title {
+    font-size: 48px;
+    margin-bottom: 40px;
+}
+
+.wishes-text {
+    font-size: 40px;
+        color: black;
+        background-color: rgb(139 134 134 / 30%);
+}
+
+
+/*Конец раздела пожеланий*/
+.organizer {
+    padding: 100px 0 100px 0;
+    background-color: #E2A0A2;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Poiret One", sans-serif;
+
+}
+.organizer .container {
+    color: #f8efea;
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+}
+.organizer-title {
+    font-size: 48px;
+    margin-bottom: 40px;
+}
+.organizer-text {
+    font-size: 40px;
+    margin-bottom: 20px;
+    text-align: center;
+}
+.organizer-name {
+    font-size: 40px;
+    margin-bottom: 20px;
+}
+.organizer-phone {
+    font-size: 48px;
+    margin-bottom: 20px;
+}
+.organizer a {
+    font-size: 30px;
+    text-decoration: none;
+    outline: none;
+    color: #f8efea;
+    border: 2px solid #f8efea;
+    box-sizing: border-box;
+    padding: 10px;
+    border-radius: 15px;
+    display: inline-block;
+    cursor: pointer;
+    text-transform: uppercase;
+}
+.organizer a:hover {
+    color: #003d4f;
+    background-color: #f8efea;
+    border: 2px solid #f8efea;
+    box-sizing: border-box;
+    padding: 20px;
+    border-radius: 5px;
+    display: inline-block;
+    cursor: pointer;
+
+}
+
+
+.presence {
+
+    background-color: #d9d9d9;          /* запасной фон */
+    background-image: url("prefinalfon.png"); 
+    /*background-size: cover;  */       
+    background-position: top center;
+    background-repeat: no-repeat;   
+    background-size: 100% auto;
+    padding: 15% 0 0 0;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.presence-title {
+    font-size: 48px;
+    margin-bottom: 40px;
+}
+.presence-text {
+    font-size: 40px;
+    margin-bottom: 46%;
+    text-align: center;
+    font-family: "Poiret One", sans-serif;
+}
+.wedding-form {
+    max-width: 700px;
+    margin: 0 auto;
+    text-align: center;
+    padding: 20px;
+    border: 2px solid black;
+    border-radius: 10px;
+    background:  grey;
+    font-size: 30px;
+    font-family: "Poiret One", sans-serif;
+
+    fieldset {
+        border: none;
+        margin-bottom: 15px;
+    }
+
+    legend {
+        font-weight: bold;
+        margin-bottom: 5px;
+        text-align: left;
+    }
+    .des {
+        font-size: 20px;
+        text-align: left;
+    }
+
+    label {
+        text-align: left;
+        display: block;
+        margin: 5px 0;
+    }
+
+    input[type="text"],
+    textarea {
+        width: 100%;
+        padding: 8px;
+        border: 1px solid #003d4f;
+        border-radius: 5px;
+        font-size: 16px;
+        text-align: left;
+        box-sizing: border-box;
+
+    }
+
+    textarea {
+        min-height: 100px;
+        text-align: left;
+    }
+
+    button {
+        width: 90%;
+        padding: 10px;
+        box-sizing: border-box;
+        background: pink;
+        color: black;
+        border: none;
+        border-radius: 5px;
+        cursor: pointer;
+        font-size: 16px;
+
+        &:hover {
+            background: #a4b485;
+        }
+    }
+}
+
+.timout {
+    padding: 50px 0 50px 0;
+    background-color: #d9d9d9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-family: "Poiret One", sans-serif;
+}
+.timout-title {
+    font-size: 55px;
+    color: black;
+    text-align: center;
+    font-weight: bold;
+    margin-bottom: 20px;
+    font-family: "Poiret One", sans-serif;
+}
+#countdown {
+    display: flex;
+    justify-content: center;
+    gap: 0px;
+}
+/*финальный фонннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннн*/
+.end {
+   
+    background-color: #d9d9d9;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    background-image: url("endfon.png");
+    background-size: cover;          /* картинка покрывает всю область, сохраняя пропорции */
+    background-position: center;
+    background-repeat: no-repeat;    /* не повторяет */
+    font-family: "Poiret One", sans-serif; /*шрифт*/
+    padding: 100% 0 100% 0;
+}
+
+/*конец финального фонннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннннна*/
+.time-box {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    color: black;
+    padding: 15px;
+    text-align: center;
+
+}
+
+.time-box span {
+    font-size: 32px;
+    font-weight: bold;
+    line-height: 1;
+}
+
+.time-box p {
+    margin: 5px 0 0;
+    font-size: 14px;
+    text-transform: uppercase;
+    opacity: 0.8;
+}
+

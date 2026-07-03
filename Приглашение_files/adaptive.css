@@ -1,0 +1,599 @@
+@media (max-width: 1024px) {
+    .container { max-width: 950px; }
+}
+@media (min-width: 768px) {
+   .desktop-message {
+        display: block;
+        padding-bottom: 200px;
+        margin-top: 150px;
+        text-align: center;
+    }
+     #preloader, #content {
+        display: none;
+    }
+
+}
+
+@media (max-width: 768px) {
+
+    .container { max-width: 600px; }
+    .dresscode-references {
+        top: 16%;
+        width: 90%;
+    }
+    .strelka-images img {
+        min-width: 150px;
+        height: 391px;
+    }
+    .strelka-text {
+        font-size: 16px;
+    }
+    
+/* Стили для локации на планшетах */
+    .location-images img {
+        flex-shrink: 0;
+        min-width: 300px;
+        height: 370px;
+    }
+    
+    /* Программа дня – переключаем на вертикальный список */
+   /* ===== ПРОГРАММА ДНЯ: мобильная версия ===== */
+.time-line-svg {
+    height: 100%;           /* высота контейнера, подберите под свой макет */
+    position: relative;
+}
+.time-line-svg svg {
+    display: block;
+    width: 100%;
+    height: 100%;
+    object-fit: contain;     /* чтобы SVG не обрезался */
+}
+
+.timeline {
+    position: absolute;      /* накладываем поверх SVG */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    pointer-events: none;    /* чтобы клики проходили сквозь, если нужно */
+}
+
+/* Каждое событие – абсолютно, но с координатами для маленького экрана */
+.event {
+    position: absolute !important;
+    width: 160px;            /* ширина текстового блока */
+    pointer-events: auto;    /* если нужно кликать по ссылкам */
+}
+
+.event-one {
+    top: 15%;
+    left: 13%;
+}
+.event-two {
+    top: 38%;
+    right: 0%;
+}
+.event-three {
+    bottom: 33%;
+    left: 13%;
+}
+.event-four {
+    bottom: 8%;
+    right: 0%;
+}
+
+/* Уменьшаем шрифты */
+.time-info-time {
+    font-size: 24px;
+}
+.description {
+    font-size: 14px;
+}
+.description span {
+    font-size: 18px;
+}
+.time-info a {
+    font-size: 14px;
+}
+    
+/*.background-wrapper {
+padding: 384px 0 384px 0;
+background-size: cover;   
+}*/
+    /*.invite {
+
+        padding: 40px 0 0 0;
+    }
+
+    .invite .invite-name {
+        font-size: 30px;
+        max-width: 600px;
+        margin-bottom: 50px;
+    }*/
+
+    /*.data-text {
+        font-size: 40px;
+        text-align: center;
+    }
+
+    .main {
+       padding: 384px 0 384px 0;
+    }
+
+    .main-info {
+        color: #f8efea;
+        font-size: 36px;
+    }
+
+    .main .no-fonts {
+        font-size: 30px;
+        margin: 20px 0 20px 0;
+        max-width: 650px;
+    }
+
+    .main-info-location a {
+        font-size: 22px;
+    }*/
+
+/* Остальные блоки */
+    .organizer-title {
+        font-size: 36px;
+        margin-bottom: 30px;
+    }
+    .organizer-text {
+        font-size: 30px;
+    }
+    .organizer-name {
+        font-size: 30px;
+    }
+    .organizer-phone {
+        font-size: 36px;
+    }
+    .organizer a {
+        font-size: 22px;
+        padding: 10px;
+    }
+    .dresscode-title {
+        font-size: 36px;
+        margin-bottom: 30px;
+    }
+    .dresscode-info-text {
+        font-size: 30px;
+        max-width: 600px;
+        text-align: center;
+        padding: 0 10px;
+    }
+    .dresscode-info-block {
+        width: 130px;
+        height: 100px;
+    }
+    .wishes-title {
+        font-size: 36px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    .wishes-text {
+        font-size: 30px;
+        padding: 20px;
+    }
+    .presence-title {
+        font-size: 36px;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    .presence-text {
+        font-size: 30px;
+        padding: 0 10px;
+    }
+}
+/*ОТСТУУУУУУУППППП
+    ОТСТУУУУУУУППППП
+    ОТСТУУУУУУУППППП
+    */
+}
+@media (max-width: 625px) {
+    .container { max-width: 520px; }
+    .location-images img {
+        flex-shrink: 0;
+        min-width: 300px;
+        height: 345px;
+    }
+    .dresscode-info-block {
+        width: 80px;
+        height: 70px;
+    }
+}
+/*.background-wrapper {
+padding: 310px 0 310px 0;
+background-size: cover;    
+}*/
+/*.main {
+       padding: 310px 0 310px 0;
+    }*/
+
+    /*.invite .invite-name {
+        font-size: 30px;
+        max-width: 520px;
+        margin-bottom: 20px;
+    }
+    .invite img {
+        top: -201px;
+        left: -262px;
+    }*/
+   /* .date-image img {
+        display: block;
+        max-width: 90%;
+    }*/
+
+@media (max-width: 425px) {
+    .container { max-width: 380px; }
+    .dresscode-references {
+        top: 17%;
+        width: 95%;
+    }
+    .strelka-images img {
+        min-width: 120px;
+        height: 380px;
+    }
+    .strelka-text svg {
+        width: 60px;
+        height: 25px;
+    }
+    .location-images img {
+        flex-shrink: 0;
+        min-width: 200px;
+        height: 270px;
+    }
+/*.background-wrapper {
+padding: 212px 0 212px 0;
+background-size: cover;    
+}*/
+    /*.invite {
+        overflow: hidden;
+    }
+
+
+
+    .invite .invite-name {
+        font-size: 20px;
+        max-width: 380px;
+    }*/
+
+   /* .date {
+        padding-bottom: 100px;
+    }
+
+    .data-text {
+        font-size: 36px;
+        text-align: center;
+    }
+
+    .main {
+        padding: 212px 0 212px 0;
+    }
+
+    .main-info {
+        font-size: 23px;
+    }
+
+    .main .no-fonts {
+        font-size: 20px;
+        max-width: 380px;
+    }
+
+    .main-info-location a {
+        font-size: 22px;
+        padding: 10px;
+    }
+
+    .main-info-location p:not(.fonts) {
+        font-size: 20px;
+    }*/
+
+    /*.dear {
+        font-size: 36px;
+    }*/
+
+    .organizer {
+        padding: 70px 0 70px 0;
+    }
+
+    .organizer-text {
+        font-size: 28px;
+    }
+
+
+    .organizer-name {
+        font-size: 28px;
+    }
+
+
+    
+
+    .wishes {
+        padding: 70px 0 70px 0;
+    }
+
+    .wishes-text {
+        font-size: 28px;
+    }
+
+
+   /* .presence {
+        padding: 70px 0 70px 0;
+    }*/
+
+    .presence-text {
+        font-size: 27px;
+    }
+
+    .timout-title {
+        font-size: 36px;
+        
+        text-align: center;
+        font-weight: bold;
+        margin-bottom: 10px;
+    }
+
+}
+
+@media (max-width: 375px) {
+    .container { max-width: 300px; }
+    .location-images img {
+        flex-shrink: 0;
+        min-width: 200px;
+        height: 200px;
+    }
+        .event-two {
+        top: 38%;
+        right: 0%;
+    }
+    .event-four {
+        bottom: 0%;
+        right: 0%;
+    }
+/*.background-wrapper { 
+       padding: 180px 0 180px 0;
+    background-size: cover;
+    }*/
+   /* .invite {
+        overflow: hidden;
+    }
+
+
+
+    .invite .invite-name {
+        font-size: 23px;
+        max-width: 300px;
+    }*/
+
+   /* .date {
+        padding-bottom: 70px;
+    }
+    .date-image img {
+        display: block;
+        max-width: 100%;
+    }
+
+    .data-text {
+        font-size: 30px;
+        text-align: center;
+    }
+
+    .main {
+        padding: 180px 0 180px 0;
+    }
+
+    .main-info {
+        font-size: 23px;
+    }
+
+    .main .no-fonts {
+        font-size: 20px;
+        max-width: 300px;
+    }
+
+    .main-info-location a {
+        font-size: 18px;
+        padding: 10px;
+    }
+
+    .main-info-location p:not(.fonts) {
+        font-size: 20px;
+    }*/
+
+   /* .dear {
+        font-size: 36px;
+    }*/
+
+    .organizer-text {
+        font-size: 22px;
+    }
+
+    .organizer-phone {
+        font-size: 28px;
+    }
+
+
+    
+
+    .wishes-text {
+        font-size: 22px;
+    }
+    .wedding-form {
+        font-size: 22px;
+    }
+    .des {
+        font-size: 16px;
+    }
+
+    .presence-text {
+        font-size: 22px;
+    }
+
+    .timout-title {
+        font-size: 32px;
+    }
+
+}
+
+@media (max-width: 320px) {
+    .container { max-width: 280px; }
+    .suitcase-text {
+    font-size: 18px
+        }
+    .event-two {
+        top: 38%;
+        right: -13%;
+    }
+    .event-three {
+        bottom: 23%;
+        left: 13%;
+    }
+        .event-four {
+        bottom: -7%;
+        right: -13%;
+    }
+/*.background-wrapper { 
+       padding: 160px 0 160px 0;
+    background-size: cover;
+    }*/
+
+
+   /* .invite .invite-name {
+        font-size: 16px;
+        max-width: 280px;
+        margin-bottom: 0;
+    }*/
+
+   /* .date {
+        padding-bottom: 50px;
+    }
+
+    .date-time {
+        font-size: 56px;
+    }
+
+    .data-text {
+        font-size: 28px;
+    }
+
+    .main {
+        padding: 160px 0 160px 0;
+    }
+
+
+    .main .no-fonts {;
+        max-width: 280px;
+    }*/
+
+    /*.dear {
+        font-size: 28px;
+    }*/
+
+   /* .main-info-location a {
+        font-size: 16px;
+    }*/
+    .organizer {
+        padding: 50px 0 50px 0;
+    }
+
+    .organizer-text {
+        font-size: 22px;
+    }
+
+    .organizer-title {
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+
+    .organizer-name {
+        font-size: 28px;
+    }
+
+    .organizer-phone {
+        font-size: 30px;
+    }
+
+    .program {
+        padding: 50px 0 50px 0;
+    }
+
+    .event {
+        gap: 20px;
+    }
+
+    .event .description {
+        font-size: 28px;
+    }
+
+    .event .time {
+        font-size: 24px;
+    }
+
+    .event .text {
+        font-size: 16px;
+    }
+
+    .dresscode {
+        padding: 50px 0 50px 0;
+    }
+
+    .dresscode-title {
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+
+    .dresscode-info-text {
+        font-size: 22px;
+        max-width: 280px;
+    }
+
+    .dresscode-info-block {
+        width: 50px;
+        height: 50px;
+    }
+
+
+    .wishes {
+        padding: 50px 0 50px 0;
+    }
+
+    .wishes-title {
+        font-size: 30px;
+        margin-bottom: 20px;
+        text-align: center;
+    }
+
+    .wishes-text {
+        font-size: 22px;
+    }
+
+
+   /* .presence {
+        padding: 50px 0 50px 0;
+    }*/
+
+    .presence-text {
+        font-size: 20px;
+    }
+
+    .presence-title {
+        font-size: 30px;
+        margin-bottom: 20px;
+    }
+
+    .wedding-form {
+        font-size: 22px;
+    }
+    .des {
+        font-size: 16px;
+    }
+    .timout {
+        padding: 20px 0 20px 0;
+    }
+    .timout-title {
+        font-size: 30px;
+    }
+
+}
