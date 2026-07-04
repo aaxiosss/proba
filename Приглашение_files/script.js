@@ -63,7 +63,7 @@ const video = document.getElementById("bg-video");
 // ===== ВИДЕО-ЗАСТАВКА (финальная версия) =====
 document.addEventListener('DOMContentLoaded', function() {
     const videoOverlay = document.getElementById('video-overlay');
-    //const introVideo = document.getElementById('intro-video');//
+    const introVideo = document.getElementById('intro-video');
     const preloader = document.getElementById('preloader');
     const skipBtn = document.getElementById('skip-video');
 
