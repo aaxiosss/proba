@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const introVideo = document.getElementById('intro-video');
     const preloader = document.getElementById('preloader');
     const skipBtn = document.getElementById('skip-video');
-
+let isPreloaderShown = false;
     // Проверяем, что все элементы существуют
     if (!videoOverlay || !introVideo || !preloader || !skipBtn) {
         console.error('Один из элементов видео-заставки не найден!');
@@ -69,22 +69,27 @@ document.addEventListener('DOMContentLoaded', function() {
     }
 
     function showPreloader() {
-        videoOverlay.style.transition = 'opacity 1s ease';
-        videoOverlay.style.opacity = '0';
-        setTimeout(() => {
-            videoOverlay.style.display = 'none';
-            preloader.style.display = 'flex';   // показываем прелоадер
-        }, 1000);
-    }
+    if (isPreloaderShown) return;          // если уже показывали – выходим
+    isPreloaderShown = true;
+
+    videoOverlay.style.transition = 'opacity 1s ease';
+    videoOverlay.style.opacity = '0';
+    setTimeout(() => {
+        videoOverlay.style.display = 'none';
+        preloader.style.display = 'flex';   // показываем прелоадер
+        // Отвязываем обработчик, чтобы больше не сработал
+        introVideo.removeEventListener('ended', showPreloader);
+    }, 1000);
+}
 
     // Когда видео закончилось – показываем прелоадер
     introVideo.addEventListener('ended', showPreloader);
 
     // Кнопка "Пропустить" – открывает прелоадер
     skipBtn.addEventListener('click', function(e) {
-        e.stopPropagation(); // предотвращаем всплытие, если нужно
-        showPreloader();
-    });
+    e.stopPropagation();
+    showPreloader();
+});
 
     // Пытаемся запустить видео автоматически
     introVideo.play().catch(() => {
