@@ -6,16 +6,7 @@
     //тут вот конец музончика//
 
 
-// ===== ОТКРЫТИЕ САЙТА (обработчик кнопки) =====
 document.querySelector('.open-btn').addEventListener('click', () => {
-    // Отменяем таймер, чтобы прелоадер не появился снова
-    if (hideTimer) {
-        clearTimeout(hideTimer);
-        hideTimer = null;
-    }
-    // Помечаем, что сайт открыт
-    isSiteOpened = true;
-
     startConfetti();
 
     const preloader = document.getElementById('preloader');
@@ -31,7 +22,7 @@ document.querySelector('.open-btn').addEventListener('click', () => {
             content.style.opacity = 1;
             loadMusic();
         }, 50);
-    }, 300);
+    }, 300); // Можно чуть задержать, чтобы плавность была заметнее
 });
 
 //Продолжаем работу над музычкой//
@@ -65,29 +56,24 @@ function loadMusic() {
 const video = document.getElementById("bg-video");
 //тут конец музыки//
 // ===== ВИДЕО-ЗАСТАВКА (исправленный) =====
-let hideTimer = null;
-let isSiteOpened = false;
-
 document.addEventListener('DOMContentLoaded', function() {
     const videoOverlay = document.getElementById('video-overlay');
     const introVideo = document.getElementById('intro-video');
     const preloader = document.getElementById('preloader');
     const skipBtn = document.getElementById('skip-video');
 
+    // Проверяем, что все элементы существуют
     if (!videoOverlay || !introVideo || !preloader || !skipBtn) {
         console.error('Один из элементов видео-заставки не найден!');
         return;
     }
 
     function showPreloader() {
-        // Если сайт уже открыт – ничего не делаем
-        if (isSiteOpened) return;
-
         videoOverlay.style.transition = 'opacity 1s ease';
         videoOverlay.style.opacity = '0';
         setTimeout(() => {
             videoOverlay.style.display = 'none';
-            preloader.style.display = 'flex';
+            preloader.style.display = 'flex';   // показываем прелоадер
         }, 1000);
     }
 
@@ -96,12 +82,13 @@ document.addEventListener('DOMContentLoaded', function() {
 
     // Кнопка "Пропустить" – открывает прелоадер
     skipBtn.addEventListener('click', function(e) {
-        e.stopPropagation();
+        e.stopPropagation(); // предотвращаем всплытие, если нужно
         showPreloader();
     });
 
-    // Автозапуск видео
+    // Пытаемся запустить видео автоматически
     introVideo.play().catch(() => {
+        // Если автозапуск заблокирован – показываем подсказку
         const hint = document.createElement('div');
         hint.style.cssText = `
             position: absolute; bottom: 50%; left: 50%; transform: translate(-50%, 50%);
@@ -117,9 +104,11 @@ document.addEventListener('DOMContentLoaded', function() {
             videoOverlay.removeEventListener('click', start);
         });
     });
-/ Автоматический переход через 30 секунд (сохраняем таймер)
-    hideTimer = setTimeout(showPreloader, 30000);
+
+    // Автоматический переход через 30 секунд (если видео не закончилось)
+    setTimeout(showPreloader, 30000);
 });
+
 // Конфетти — временно заглушка
 function startConfetti() {
     const duration = 3000;
@@ -281,5 +270,4 @@ document.addEventListener("DOMContentLoaded", () => {
     const titleSection = document.querySelector(".fade-in");
     titleSection.classList.add("show");
 });
-
 
