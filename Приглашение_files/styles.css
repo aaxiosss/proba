@@ -8,6 +8,7 @@
     /* если у вас есть другие начертания (жирное, курсив), добавьте отдельные блоки */
 }
 * {
+    overflow-x: hidden;
     margin: 0;
     padding: 0;
 }
@@ -234,7 +235,6 @@ button:focus {
 }
 
 #content {
-     touch-action: pan-y;
     background-color: #d9d9d9;
     display: none;
     opacity: 0;
