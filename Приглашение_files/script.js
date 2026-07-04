@@ -28,6 +28,7 @@ document.querySelector('.open-btn').addEventListener('click', () => {
 //Продолжаем работу над музычкой//
 function loadMusic() {
     audio.play().then(() => {
+        audio.volume = 0.3;   // тише
         if (!isStarted) {
             audio.currentTime = 0; // опционально
             isStarted = true;
