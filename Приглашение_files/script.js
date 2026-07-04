@@ -1,4 +1,4 @@
-
+document.addEventListener('DOMContentLoaded', function() {
 //тут вроде добавил константы для работы музона//
     const musicToggle = document.getElementById("music-toggle");
     const audio = document.getElementById("bgMusic");
@@ -298,4 +298,4 @@ document.addEventListener("DOMContentLoaded", () => {
     const titleSection = document.querySelector(".fade-in");
     titleSection.classList.add("show");
 });
-
+});
