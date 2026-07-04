@@ -4,8 +4,7 @@
     const audio = document.getElementById("bgMusic");
     let isStarted = false;
     //тут вот конец музончика//
-if (video) video.volume = 1.0;   // громко
-    if (audio) audio.volume = 0.3;   // тише (30% от максимума)
+
 
 document.querySelector('.open-btn').addEventListener('click', () => {
     startConfetti();
@@ -293,4 +292,5 @@ document.addEventListener("DOMContentLoaded", () => {
     const titleSection = document.querySelector(".fade-in");
     titleSection.classList.add("show");
 });
-
+if (video) video.volume = 1.0;   // громко
+    if (audio) audio.volume = 0.3;   // тише (30% от максимума)
