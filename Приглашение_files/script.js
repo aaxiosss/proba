@@ -62,38 +62,39 @@ document.addEventListener('DOMContentLoaded', function() {
     const preloader = document.getElementById('preloader');
     const skipBtn = document.getElementById('skip-video');
 
-    // Проверяем, что все элементы существуют
     if (!videoOverlay || !introVideo || !preloader || !skipBtn) {
         console.error('Один из элементов видео-заставки не найден!');
         return;
     }
 
+    let isPreloaderShown = false;
+
     function showPreloader() {
-    if (isPreloaderShown) return;          // если уже показывали – выходим
-    isPreloaderShown = true;
+        if (isPreloaderShown) return;
+        isPreloaderShown = true;
 
-    videoOverlay.style.transition = 'opacity 1s ease';
-    videoOverlay.style.opacity = '0';
-    setTimeout(() => {
-        videoOverlay.style.display = 'none';
-        preloader.style.display = 'flex';   // показываем прелоадер
-        // Отвязываем обработчик, чтобы больше не сработал
-        introVideo.removeEventListener('ended', showPreloader);
-    }, 1000);
-}
+        videoOverlay.style.transition = 'opacity 1s ease';
+        videoOverlay.style.opacity = '0';
+        setTimeout(() => {
+            videoOverlay.style.display = 'none';
+            preloader.style.display = 'flex';
+            // Отвязываем обработчик, чтобы не сработал повторно
+            introVideo.removeEventListener('ended', showPreloader);
+        }, 1000);
+    }
 
-    // Когда видео закончилось – показываем прелоадер
     introVideo.addEventListener('ended', showPreloader);
 
-    // Кнопка "Пропустить" – открывает прелоадер
     skipBtn.addEventListener('click', function(e) {
-    e.stopPropagation();
-    showPreloader();
-});
+        e.stopPropagation();
+        // Останавливаем видео, чтобы оно не вызывало 'ended' после пропуска
+        introVideo.pause();
+        introVideo.currentTime = 0;
+        showPreloader();
+    });
 
-    // Пытаемся запустить видео автоматически
+    // Попытка автозапуска
     introVideo.play().catch(() => {
-        // Если автозапуск заблокирован – показываем подсказку
         const hint = document.createElement('div');
         hint.style.cssText = `
             position: absolute; bottom: 50%; left: 50%; transform: translate(-50%, 50%);
@@ -109,8 +110,7 @@ document.addEventListener('DOMContentLoaded', function() {
             videoOverlay.removeEventListener('click', start);
         });
     });
-
-    
+});
 
 // Конфетти — временно заглушка
 function startConfetti() {
