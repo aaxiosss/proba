@@ -4,7 +4,6 @@
     const audio = document.getElementById("bgMusic");
     let isStarted = false;
     //тут вот конец музончика//
-let isPreloaderShown = false;
 
 document.querySelector('.open-btn').addEventListener('click', () => {
     startConfetti();
