@@ -11,7 +11,13 @@
      #preloader, #content {
         display: none;
     }
-
+/* Скрываем видео-заставку на десктопе */
+    #video-overlay {
+        display: none !important;
+    }
+    #skip-video {
+        display: none !important;
+    }
 }
 
 @media (max-width: 768px) {
