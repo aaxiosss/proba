@@ -14,7 +14,7 @@ document.querySelector('.open-btn').addEventListener('click', () => {
     const introVideo = document.getElementById('intro-video');
     
     
-    if (video) video.volume = 1.0;   // громко
+   if (introVideo) introVideo.volume = 1.0;
     
     preloader.style.opacity = 0;
 
