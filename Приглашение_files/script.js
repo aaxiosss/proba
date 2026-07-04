@@ -36,7 +36,7 @@ function loadMusic() {
         return;
     }
     // Устанавливаем громкость ДО вызова play(), чтобы она точно применилась
-    audio.volume = 0.3;
+    audio.volume = 0.2;
     console.log('Громкость установлена:', audio.volume);
 
     audio.play().then(() => {
