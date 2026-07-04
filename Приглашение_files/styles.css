@@ -234,6 +234,7 @@ button:focus {
 }
 
 #content {
+     touch-action: pan-y;
     background-color: #d9d9d9;
     display: none;
     opacity: 0;
