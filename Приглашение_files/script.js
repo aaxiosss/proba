@@ -105,9 +105,7 @@ document.addEventListener('DOMContentLoaded', function() {
         });
     });
 
-    // Автоматический переход через 30 секунд (если видео не закончилось)
-    setTimeout(showPreloader, 30000);
-});
+    
 
 // Конфетти — временно заглушка
 function startConfetti() {
