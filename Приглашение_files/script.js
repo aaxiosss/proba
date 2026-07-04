@@ -15,7 +15,7 @@ document.querySelector('.open-btn').addEventListener('click', () => {
     
     
     if (video) video.volume = 1.0;   // громко
-    if (audio) audio.volume = 0.3;             // музыка — тише
+    
     preloader.style.opacity = 0;
 
     setTimeout(() => {
@@ -31,6 +31,7 @@ document.querySelector('.open-btn').addEventListener('click', () => {
 
 //Продолжаем работу над музычкой//
 function loadMusic() {
+    if (audio) audio.volume = 0.3;             // музыка — тише
     audio.play().then(() => {
         
         if (!isStarted) {
