@@ -54,7 +54,7 @@ function loadMusic() {
 
 const video = document.getElementById("bg-video");
 //тут конец музыки//
-// ===== ВИДЕО-ЗАСТАВКА (исправленный) =====
+// ===== ВИДЕО-ЗАСТАВКА (финальная версия) =====
 document.addEventListener('DOMContentLoaded', function() {
     const videoOverlay = document.getElementById('video-overlay');
     const introVideo = document.getElementById('intro-video');
@@ -66,33 +66,37 @@ document.addEventListener('DOMContentLoaded', function() {
         return;
     }
 
-    let isPreloaderShown = false;
+    let isContentShown = false; // флаг, что контент уже показан
 
     function showPreloader() {
-        if (isPreloaderShown) return;
-        isPreloaderShown = true;
+        if (isContentShown) return; // если уже показали контент – ничего не делаем
+        isContentShown = true;
 
+        // Останавливаем и сбрасываем видео, чтобы не было событий
+        introVideo.pause();
+        introVideo.currentTime = 0;
+        introVideo.removeEventListener('ended', showPreloader);
+
+        // Прячем видео-заставку
         videoOverlay.style.transition = 'opacity 1s ease';
         videoOverlay.style.opacity = '0';
         setTimeout(() => {
             videoOverlay.style.display = 'none';
+            // Показываем прелоадер
             preloader.style.display = 'flex';
-            // Отвязываем обработчик, чтобы не сработал повторно
-            introVideo.removeEventListener('ended', showPreloader);
         }, 1000);
     }
 
+    // Когда видео доиграло – показываем прелоадер
     introVideo.addEventListener('ended', showPreloader);
 
+    // Кнопка "Пропустить"
     skipBtn.addEventListener('click', function(e) {
         e.stopPropagation();
-        // Останавливаем видео, чтобы оно не вызывало 'ended' после пропуска
-        introVideo.pause();
-        introVideo.currentTime = 0;
         showPreloader();
     });
 
-    // Попытка автозапуска
+    // Попытка автозапуска видео
     introVideo.play().catch(() => {
         const hint = document.createElement('div');
         hint.style.cssText = `
@@ -108,6 +112,21 @@ document.addEventListener('DOMContentLoaded', function() {
             hint.remove();
             videoOverlay.removeEventListener('click', start);
         });
+    });
+
+    // ===== ДОПОЛНИТЕЛЬНО: защита от повторного появления =====
+    // Если по какой-то причине видео перезапустится после того, как мы показали прелоадер,
+    // мы должны предотвратить повторный вызов showPreloader.
+    // Для этого при клике на кнопку открытия прелоадера (open-btn) мы тоже остановим видео.
+    document.querySelector('.open-btn').addEventListener('click', function() {
+        // Останавливаем видео, если оно ещё играет
+        introVideo.pause();
+        introVideo.currentTime = 0;
+        introVideo.removeEventListener('ended', showPreloader);
+        // Убедимся, что флаг установлен, чтобы повторно не сработало
+        isContentShown = true;
+        // Принудительно скрываем видео-заставку (на всякий случай)
+        videoOverlay.style.display = 'none';
     });
 });
 
