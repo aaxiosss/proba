@@ -1,4 +1,4 @@
-document.addEventListener('DOMContentLoaded', function() {
+
 //тут вроде добавил константы для работы музона//
     const musicToggle = document.getElementById("music-toggle");
     const audio = document.getElementById("bgMusic");
@@ -31,11 +31,12 @@ document.querySelector('.open-btn').addEventListener('click', () => {
 
 //Продолжаем работу над музычкой//
 function loadMusic() {
-    if (audio) audio.volume = 0.3;             // музыка — тише
+    
     audio.play().then(() => {
         
         if (!isStarted) {
             audio.currentTime = 0; // опционально
+            audio.volume = 0.3;             // музыка — тише
             isStarted = true;
         }
         if (musicToggle) {
@@ -298,4 +299,4 @@ document.addEventListener("DOMContentLoaded", () => {
     const titleSection = document.querySelector(".fade-in");
     titleSection.classList.add("show");
 });
-});
+
