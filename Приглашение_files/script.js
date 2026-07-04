@@ -4,7 +4,7 @@
     const audio = document.getElementById("bgMusic");
     let isStarted = false;
     //тут вот конец музончика//
-
+let isPreloaderShown = false;
 
 document.querySelector('.open-btn').addEventListener('click', () => {
     startConfetti();
@@ -61,7 +61,7 @@ document.addEventListener('DOMContentLoaded', function() {
     const introVideo = document.getElementById('intro-video');
     const preloader = document.getElementById('preloader');
     const skipBtn = document.getElementById('skip-video');
-let isPreloaderShown = false;
+
     // Проверяем, что все элементы существуют
     if (!videoOverlay || !introVideo || !preloader || !skipBtn) {
         console.error('Один из элементов видео-заставки не найден!');
