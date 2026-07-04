@@ -31,12 +31,17 @@ document.querySelector('.open-btn').addEventListener('click', () => {
 
 //Продолжаем работу над музычкой//
 function loadMusic() {
-    
+    if (!audio) {
+        console.warn('Аудио элемент не найден');
+        return;
+    }
+    // Устанавливаем громкость ДО вызова play(), чтобы она точно применилась
+    audio.volume = 0.3;
+    console.log('Громкость установлена:', audio.volume);
+
     audio.play().then(() => {
-        
         if (!isStarted) {
-            audio.currentTime = 0; // опционально
-            audio.volume = 0.3;             // музыка — тише
+            audio.currentTime = 0;
             isStarted = true;
         }
         if (musicToggle) {
@@ -46,7 +51,6 @@ function loadMusic() {
         console.log("Ошибка воспроизведения:", error);
     });
 }
-
 // Переключатель музыки
     if (musicToggle) {
         musicToggle.addEventListener("click", function () {
