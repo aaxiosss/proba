@@ -11,7 +11,11 @@ document.querySelector('.open-btn').addEventListener('click', () => {
 
     const preloader = document.getElementById('preloader');
     const content = document.getElementById('content');
-
+    const introVideo = document.getElementById('intro-video');
+    
+    
+    if (video) video.volume = 1.0;   // громко
+    if (audio) audio.volume = 0.3;             // музыка — тише
     preloader.style.opacity = 0;
 
     setTimeout(() => {
@@ -28,7 +32,7 @@ document.querySelector('.open-btn').addEventListener('click', () => {
 //Продолжаем работу над музычкой//
 function loadMusic() {
     audio.play().then(() => {
-        audio.volume = 0.3;   // тише
+        
         if (!isStarted) {
             audio.currentTime = 0; // опционально
             isStarted = true;
@@ -59,7 +63,7 @@ const video = document.getElementById("bg-video");
 // ===== ВИДЕО-ЗАСТАВКА (финальная версия) =====
 document.addEventListener('DOMContentLoaded', function() {
     const videoOverlay = document.getElementById('video-overlay');
-    const introVideo = document.getElementById('intro-video');
+    //const introVideo = document.getElementById('intro-video');//
     const preloader = document.getElementById('preloader');
     const skipBtn = document.getElementById('skip-video');
 
@@ -293,5 +297,4 @@ document.addEventListener("DOMContentLoaded", () => {
     const titleSection = document.querySelector(".fade-in");
     titleSection.classList.add("show");
 });
-if (video) video.volume = 1.0;   // громко
-    if (audio) audio.volume = 0.3;   // тише (30% от максимума)
+
